@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="enteredValue" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  <hr />
+  <button mat-raised-button color="primary" (click)="onCreateCar()">
+    Publish
+  </button>
+</mat-card>
+<p>{{ newCar }}</p>
