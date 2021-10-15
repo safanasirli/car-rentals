@@ -7,17 +7,20 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component'
 import { CarCreateComponent } from './cars/car-create/car-create.component';
+import { CarListComponent } from './cars/car-list/car-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CarCreateComponent
+    CarCreateComponent,
+    CarListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { CarCreateComponent } from './cars/car-create/car-create.component';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
