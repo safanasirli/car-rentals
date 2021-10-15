@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 
 @Component({
   selector: 'app-car-create',
@@ -11,7 +11,7 @@ export class CarCreateComponent {
   enteredDescription = ""
   enteredImg = ""
 
-  createdCar = new EventEmitter();
+  @Output() createdCar = new EventEmitter();
   onCreateCar() {
     const car = {
       title: this.enteredTitle,
