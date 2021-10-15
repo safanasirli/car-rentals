@@ -1,7 +1,10 @@
-<mat-accordion>
-  <mat-expansion-panel>
+<!-- if we want all the accordions open multi=true -->
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let car of cars">
     <mat-expansion-panel-header>
-      Title
-  </mat-expansion-panel-header>
+      {{ car.title }}
+    </mat-expansion-panel-header>
+    <p>{{ car.description }}</p>
+    <img src="{{ car.img }}" />
   </mat-expansion-panel>
 </mat-accordion>
