@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component } from '@angular/core'
 import { NgForm } from '@angular/forms';
 
-import { Car } from '../cars.model';
+import { CarsService } from '../cars.service';
 
 @Component({
   selector: 'app-car-create',
@@ -14,16 +14,12 @@ export class CarCreateComponent {
   enteredDescription = ""
   enteredImg = ""
 
-  @Output() createdCar = new EventEmitter<Car>();
+  constructor(public carsService: CarsService) { }
+
   onCreateCar(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    const car: Car = {
-      title: form.value.title,
-      description: form.value.description,
-      img: form.value.img
-    }
-    this.createdCar.emit(car);
+    this.carsService.addCar(form.value.title, form.value.description, form.value.img)
   }
 }
