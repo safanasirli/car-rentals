@@ -1,8 +1,8 @@
 <mat-card>
-  <form (submit)="onCreateCar(postForm)" #postForm="ngForm" required>
+  <form (submit)="onCreateCar(postForm)" #postForm="ngForm" >
     <mat-form-field>
       <mat-label>Title</mat-label>
-      <input matInput type="text" name="title" ngModel />
+      <input matInput type="text" name="title" ngModel required/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>
@@ -10,10 +10,10 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Image</mat-label>
-      <textarea matInput name="img" ngModel></textarea>
+      <textarea matInput name="img" ngModel required></textarea>
     </mat-form-field>
     <hr />
-    <button mat-raised-button color="primary" type="submit" required>
+    <button mat-raised-button color="primary" type="submit" >
       Publish
     </button>
   </form>
