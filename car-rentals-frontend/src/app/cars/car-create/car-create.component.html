@@ -1,18 +1,18 @@
 <mat-card>
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput type="text" [(ngModel)]="enteredTitle" />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <textarea matInput [(ngModel)]="enteredDescription"></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Image</mat-label>
-    <textarea matInput [(ngModel)]="enteredImg"></textarea>
-  </mat-form-field>
-  <hr />
-  <button mat-raised-button color="primary" (click)="onCreateCar()">
-    Publish
-  </button>
+  <form (submit)="onCreateCar(postForm)" #postForm ="ngForm">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput type="text" name="title" ngModel />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput name="description" ngModel></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <textarea matInput name="img" ngModel></textarea>
+    </mat-form-field>
+    <hr />
+    <button mat-raised-button color="primary" type="submit">Publish</button>
+  </form>
 </mat-card>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core'
+import { NgForm } from '@angular/forms';
 
-import {Car} from '../cars.model';
+import { Car } from '../cars.model';
 
 @Component({
   selector: 'app-car-create',
@@ -14,11 +15,11 @@ export class CarCreateComponent {
   enteredImg = ""
 
   @Output() createdCar = new EventEmitter<Car>();
-  onCreateCar() {
-    const car: Car= {
-      title: this.enteredTitle,
-      description: this.enteredDescription,
-      img: this.enteredImg
+  onCreateCar(form: NgForm) {
+    const car: Car = {
+      title: form.value.title,
+      description: form.value.description,
+      img: form.value.img
     }
     this.createdCar.emit(car);
   }
