@@ -21,5 +21,6 @@ export class CarCreateComponent {
       return;
     }
     this.carsService.addCar(form.value.title, form.value.description, form.value.img)
+    form.resetForm();
   }
 }
