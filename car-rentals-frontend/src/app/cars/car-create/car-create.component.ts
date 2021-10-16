@@ -16,6 +16,9 @@ export class CarCreateComponent {
 
   @Output() createdCar = new EventEmitter<Car>();
   onCreateCar(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
     const car: Car = {
       title: form.value.title,
       description: form.value.description,
