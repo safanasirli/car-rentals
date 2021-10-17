@@ -15,7 +15,7 @@ private carsSub: Subscription;
   constructor(public carsService: CarsService) {
   }
   ngOnInit(){
-    this.cars = this.carsService.getCars()
+     this.carsService.getCars()
     this.carsSub =  this.carsService.getCarUpdateListener()
     .subscribe((cars:Car[])=>{
       this.cars=cars
