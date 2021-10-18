@@ -1,5 +1,5 @@
-import { Component,OnInit,OnDestroy} from '@angular/core';
-import {Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Car } from '../cars.model';
 import { CarsService } from '../cars.service'
 @Component({
@@ -8,20 +8,20 @@ import { CarsService } from '../cars.service'
   styleUrls: ['./car-list.component.css']
 })
 
-export class CarListComponent implements OnInit,OnDestroy{
+export class CarListComponent implements OnInit, OnDestroy {
 
-cars: Car[] = [];
-private carsSub: Subscription;
+  cars: Car[] = [];
+  private carsSub: Subscription;
   constructor(public carsService: CarsService) {
   }
-  ngOnInit(){
-     this.carsService.getCars()
-    this.carsSub =  this.carsService.getCarUpdateListener()
-    .subscribe((cars:Car[])=>{
-      this.cars=cars
-    })
+  ngOnInit() {
+    this.carsService.getCars()
+    this.carsSub = this.carsService.getCarUpdateListener()
+      .subscribe((cars: Car[]) => {
+        this.cars = cars
+      })
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.carsSub.unsubscribe()
   }
 }
