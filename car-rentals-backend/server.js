@@ -20,7 +20,12 @@ const {
 // Handling Errors 
 app.use(handleValidationErrors);
 app.use(handleErrors);
-
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', "*");
+    res.setHeader('Access-Control-Allow-Header', "Origin,X-Request-With,Content-Type,Accept");
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PATCH,OPTIONS")
+    next()
+})
 app.use('/api/cars', (req, res, next) => {
     cars = [
         { id: '00001', title: "Range Rover", description: "Good car!", img: "https://m.economictimes.com/thumb/msid-69429504,width-1200,height-900,resizemode-4,imgsize-586493/jlr-unveils-petrol-variant-of-range-rover-sport-at-rs-86-71-lakh.jpg" },

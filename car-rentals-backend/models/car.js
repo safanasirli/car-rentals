@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const CarSchema = new mongoose.Schema({
     title: String,
     description: String,
-    url: String,
+    img: String,
 });
 
 const Car = mongoose.model('Car', CarSchema);
