@@ -44,4 +44,14 @@ export class CarsService {
         this.carsUpdated.next([...this.cars]);
       });
   }
+
+  deleteCar(carId: string) {
+    this.http.delete("http://localhost:3000/api/cars/" + carId)
+      .subscribe(() => {
+        const updatedCars = this.cars.filter(car => car.id !== carId);
+        this.cars = updatedCars;
+        this.carsUpdated.next([...this.cars])
+      })
+  }
 }
+

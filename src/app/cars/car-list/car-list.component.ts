@@ -21,6 +21,10 @@ export class CarListComponent implements OnInit, OnDestroy {
         this.cars = cars
       })
   }
+
+  onDelete(carId: string) {
+    this.carsService.deleteCar(carId)
+  }
   ngOnDestroy() {
     this.carsSub.unsubscribe()
   }
