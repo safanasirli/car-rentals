@@ -1,20 +1,20 @@
 <mat-card>
-  <form (submit)="onCreateCar(postForm)" #postForm="ngForm" >
+  <form (submit)="onSaveCar(postForm)" #postForm="ngForm">
     <mat-form-field>
       <mat-label>Title</mat-label>
-      <input matInput type="text" name="title" ngModel required #title="ngModel"/>
+      <input matInput type="text" name="title" [ngModel]="car?.title" required #title="ngModel" />
       <mat-error *ngIf="title.invalid">Enter Car Title.</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <textarea matInput name="description" ngModel required></textarea>
+      <textarea matInput name="description" [ngModel]="car?.description" required #description="ngModel"></textarea>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Image</mat-label>
-      <textarea matInput name="img" ngModel required></textarea>
+      <textarea matInput name="img" [ngModel]="car?.img" required #img="ngModel"></textarea>
     </mat-form-field>
     <hr />
-    <button mat-raised-button color="primary" type="submit" >
+    <button mat-raised-button color="primary" type="submit">
       Publish
     </button>
   </form>

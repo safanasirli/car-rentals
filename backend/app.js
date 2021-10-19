@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-
+var cors = require('cors')
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+app.use(cors())
 const mongoose = require("mongoose");
 mongoose.connect("mongodb+srv://safa:Wj1S0Prpt6kXsALV@cluster0.15g5i.mongodb.net/car-rentals?retryWrites=true&w=majority")
   .then(() => {
@@ -43,7 +43,17 @@ app.post("/api/cars", (req, res, next) => {
   });
 
 });
-
+app.put("/api/cars/:id", (req, res, next) => {
+  const car = new Car({
+    _id: req.body.id,
+    title: req.body.title,
+    description: req.body.description,
+    img: req.body.img
+  })
+  Car.updateOne({ _id: req.params.id }, car).then(updatedCar => {
+    req.status(200).json({ message: 'Car data Updated' })
+  })
+})
 app.get("/api/cars", (req, res, next) => {
   Car.find()
     .then(cars => {
@@ -54,6 +64,16 @@ app.get("/api/cars", (req, res, next) => {
       });
     });
 });
+
+app.get("/api/cars/:id", (req, res, next) => {
+  Car.findById(req.params.id).then(car => {
+    if (car) {
+      res.status(200).json(car)
+    } else {
+      res.status(404).json({ message: 'Car not found!' });
+    }
+  })
+})
 //Delete
 
 app.delete("/api/cars/:id", (req, res, next) => {

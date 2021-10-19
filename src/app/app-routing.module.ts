@@ -5,7 +5,8 @@ import { CarListComponent } from './cars/car-list/car-list.component';
 
 const routes: Routes = [
   { path: '', component: CarListComponent },
-  { path: 'host', component: CarCreateComponent }
+  { path: 'add', component: CarCreateComponent },
+  { path: 'edit/:carId', component: CarCreateComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

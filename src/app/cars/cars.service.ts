@@ -35,6 +35,23 @@ export class CarsService {
     return this.carsUpdated.asObservable();
   }
 
+  getCar(id: string) {
+    return this.http.get<{ _id: string, title: string, description: string, img: string }>("http://localhost:3000/api/cars/" + id)
+  }
+
+
+  updateCar(id: string, title: string, description: string, img: string) {
+    const car: Car = { id: id, title: title, description: description, img: img }
+    this.http.put("http://localhost:3000/api/cars/" + id, car)
+      .subscribe(res => {
+        const updatedCars = [...this.cars]
+        const oldCarIndex = updatedCars.findIndex(newCar => newCar.id === car.id);
+        updatedCars[oldCarIndex] = car;
+        this.cars = updatedCars;
+        this.carsUpdated.next([...this.cars]);
+      })
+  }
+
   addCar(title: string, description: string, img: string) {
     const car: Car = { id: null, title: title, description: description, img: img }
     this.http.post<{ message: string, carId: string }>("http://localhost:3000/api/cars", car)
