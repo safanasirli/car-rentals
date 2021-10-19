@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
+import { map } from "rxjs/operators";
 import { Car } from "./cars.model";
 
 @Injectable({ providedIn: "root" })
@@ -11,11 +12,21 @@ export class CarsService {
   constructor(private http: HttpClient) { }
 
   getCars() {
-    this.http.get<{ message: string; cars: Car[] }>(
+    this.http.get<{ message: string; cars: any }>(
       "http://localhost:3000/api/cars"
     )
-      .subscribe(carData => {
-        this.cars = carData.cars;
+      .pipe(map((carData) => {
+        return carData.cars.map(car => {
+          return {
+            title: car.title,
+            description: car.description,
+            img: car.img,
+            id: car._id
+          }
+        })
+      }))
+      .subscribe(newCars => {
+        this.cars = newCars;
         this.carsUpdated.next([...this.cars]);
       });
   }
