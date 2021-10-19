@@ -37,9 +37,10 @@ export class CarsService {
 
   addCar(title: string, description: string, img: string) {
     const car: Car = { id: null, title: title, description: description, img: img }
-    this.http.post<{ message: string }>("http://localhost:3000/api/cars", car)
+    this.http.post<{ message: string, carId: string }>("http://localhost:3000/api/cars", car)
       .subscribe(responseData => {
-        console.log(responseData.message);
+        const id = responseData.carId;
+        car.id = id;
         this.cars.push(car);
         this.carsUpdated.next([...this.cars]);
       });

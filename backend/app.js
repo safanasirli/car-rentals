@@ -35,10 +35,13 @@ app.post("/api/cars", (req, res, next) => {
     description: req.body.description,
     img: req.body.img
   });
-  car.save();
-  res.status(201).json({
-    message: 'Car added successfully'
+  car.save().then(result => {
+    res.status(201).json({
+      message: 'Car added successfully',
+      carId: createdCar._id
+    });
   });
+
 });
 
 app.get("/api/cars", (req, res, next) => {
