@@ -28,7 +28,7 @@ display:flex;
 flex-direction:row;
 flex-wrap: wrap;
 }
-@media only screen and (max-width:500px){
+@media only screen and (max-width:600px){
 
   mat-form-field{
     display:flex;

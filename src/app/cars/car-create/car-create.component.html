@@ -1,24 +1,28 @@
 <mat-card>
+  <h1 class="header">List Your Car</h1>
   <form (submit)="onSaveCar(postForm)" #postForm="ngForm">
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input matInput type="text" name="title" [ngModel]="car?.title" required #title="ngModel" />
-      <mat-error *ngIf="title.invalid">Enter Car Title.</mat-error>
+      <mat-error *ngIf="title.invalid">Enter Car Title</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>
       <textarea matInput name="description" [ngModel]="car?.description" required #description="ngModel"></textarea>
+      <mat-error *ngIf="title.invalid">Enter Car Description</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Image</mat-label>
       <textarea matInput name="img" [ngModel]="car?.img" required #img="ngModel"></textarea>
+      <mat-error *ngIf="title.invalid">Enter Car Image</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Price</mat-label>
       <textarea matInput name="price" [ngModel]="car?.price" required #price="ngModel"></textarea>
+      <mat-error *ngIf="title.invalid">Enter Car Price</mat-error>
     </mat-form-field>
     <hr />
-    <button mat-raised-button color="primary" type="submit">
+    <button class="submit-button" mat-raised-button color="black" type="submit">
       Publish
     </button>
   </form>

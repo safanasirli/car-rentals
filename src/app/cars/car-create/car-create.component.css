@@ -9,3 +9,11 @@ mat-card {
 button {
   width: 100px;
 }
+.header {
+  text-align:center
+}
+.submit-button{
+  background-color:rgb(231, 120, 16);
+  color:white;
+  margin:0 auto;
+}

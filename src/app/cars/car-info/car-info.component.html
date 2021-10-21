@@ -1,15 +1,17 @@
 <mat-card *ngIf="car">
     <img mat-card-image src="{{ car.img }}" />
-    <mat-card-title>
-        {{ car.title }}
-    </mat-card-title>
-    <button mat-raised-button (click)="Reserve()">{{reserve ? 'Undo':'Reserve'}}</button>
-    <h2 *ngIf="reserve">{{car.title}} is Reserved !</h2>
+    <div class="row-1">
+        <mat-card-title>
+            {{ car.title }}
+        </mat-card-title>
+        <h1>${{ car.price }}/day</h1>
+    </div>
     <mat-card-subtitle>
         {{ car.description }}
     </mat-card-subtitle>
     <mat-card-subtitle>
-        <h1>${{ car.price }}/day</h1>
+        <button class="reserve-button" mat-raised-button (click)="Reserve()">{{reserve ? 'Undo':'Reserve'}}</button>
+        <h2 *ngIf="reserve">{{car.title}} is Reserved!</h2>
     </mat-card-subtitle>
     <mat-card-actions>
         <a mat-button color="primary" [routerLink]="['/edit', car.id]">Edit</a>
