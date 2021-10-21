@@ -4,15 +4,15 @@
     </mat-card-title>
     <mat-card-subtitle>
         {{ car.description }}
-        
+
     </mat-card-subtitle>
     <mat-card-subtitle>
         {{ car.price }}
-        
+
     </mat-card-subtitle>
     <img mat-card-image src="{{ car.img }}" />
-    <!-- <mat-card-actions>
+    <mat-card-actions>
         <a mat-button color="primary" [routerLink]="['/edit', car.id]">Edit</a>
         <button mat-button color="warn" (click)="onDelete(car.id)">Delete</button>
-    </mat-card-actions> -->
+    </mat-card-actions>
 </mat-card>
