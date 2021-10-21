@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 import {MatSelectModule} from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
@@ -36,7 +38,8 @@ import { CarInfoComponent } from './cars/car-info/car-info.component';
     MatButtonModule,
     MatExpansionModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

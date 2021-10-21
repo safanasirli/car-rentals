@@ -35,8 +35,15 @@ export class CarInfoComponent implements OnInit, OnDestroy {
     onDelete(carId: string) {
         this.carsService.deleteCar(carId)
     }
+
     ngOnDestroy() {
         this.carsSub.unsubscribe()
     }
+    reserve: boolean = false;
 
+    Reserve(): void {
+        this.reserve = !this.reserve;
+       
+        // Do some other stuff needed
+    }
 }
