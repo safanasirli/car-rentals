@@ -45,6 +45,12 @@ const onListening = () => {
 
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
+const module = require('path');
+
+  app.use(express.static('public'));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'public/index.html'));
+})
 
 const server = http.createServer(app);
 server.on("error", onError);
