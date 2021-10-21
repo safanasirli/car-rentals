@@ -18,7 +18,7 @@ export class CarInfoComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('carId');
         this.carsService.getCar(id)
             .subscribe((carData) => {
-                this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img }
+                this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img, price: carData.price }
             })
     }
 

@@ -8,7 +8,8 @@ router.post("", (req, res, next) => {
     const car = new Car({
         title: req.body.title,
         description: req.body.description,
-        img: req.body.img
+        img: req.body.img,
+        price: req.body.price,
     });
     car.save().then(result => {
         res.status(201).json({
@@ -23,7 +24,8 @@ router.put("/:id", (req, res, next) => {
         _id: req.body.id,
         title: req.body.title,
         description: req.body.description,
-        img: req.body.img
+        img: req.body.img,
+        price: req.body.price,
     })
     Car.updateOne({ _id: req.params.id }, car).then(updatedCar => {
         req.status(200).json({ message: 'Car data Updated' })

@@ -13,6 +13,10 @@
       <mat-label>Image</mat-label>
       <textarea matInput name="img" [ngModel]="car?.img" required #img="ngModel"></textarea>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <textarea matInput name="price" [ngModel]="car?.price" required #price="ngModel"></textarea>
+    </mat-form-field>
     <hr />
     <button mat-raised-button color="primary" type="submit">
       Publish

@@ -15,6 +15,7 @@ export class CarCreateComponent implements OnInit {
   enteredTitle = ""
   enteredDescription = ""
   enteredImg = ""
+  enteredPrice = ""
   car: Car;
   private mode = 'add';
   private carId: string;
@@ -27,7 +28,7 @@ export class CarCreateComponent implements OnInit {
         this.mode = 'edit';
         this.carId = paramMap.get('carId');
         this.carsService.getCar(this.carId).subscribe(carData => {
-          this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img }
+          this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img, price: carData.price }
         })
       } else {
         this.mode = 'add';
@@ -40,10 +41,10 @@ export class CarCreateComponent implements OnInit {
       return;
     }
     if (this.mode === 'add') {
-      this.carsService.addCar(form.value.title, form.value.description, form.value.img)
+      this.carsService.addCar(form.value.title, form.value.description, form.value.img, form.value.price)
 
     } else {
-      this.carsService.updateCar(this.carId, form.value.title, form.value.description, form.value.img)
+      this.carsService.updateCar(this.carId, form.value.title, form.value.description, form.value.img, form.value.price)
     }
     form.resetForm();
   }

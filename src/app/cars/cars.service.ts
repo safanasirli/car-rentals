@@ -21,7 +21,8 @@ export class CarsService {
             title: car.title,
             description: car.description,
             img: car.img,
-            id: car._id
+            id: car._id,
+            price: car.price
           }
         })
       }))
@@ -36,12 +37,12 @@ export class CarsService {
   }
 
   getCar(id: string) {
-    return this.http.get<{ _id: string, title: string, description: string, img: string }>("http://localhost:3000/api/cars/" + id)
+    return this.http.get<{ _id: string, title: string, description: string, img: string, price: number }>("http://localhost:3000/api/cars/" + id)
   }
 
 
-  updateCar(id: string, title: string, description: string, img: string) {
-    const car: Car = { id: id, title: title, description: description, img: img }
+  updateCar(id: string, title: string, description: string, img: string, price: number) {
+    const car: Car = { id: id, title: title, description: description, img: img, price: price }
     this.http.put("http://localhost:3000/api/cars/" + id, car)
       .subscribe(res => {
         const updatedCars = [...this.cars]
@@ -52,8 +53,8 @@ export class CarsService {
       })
   }
 
-  addCar(title: string, description: string, img: string) {
-    const car: Car = { id: null, title: title, description: description, img: img }
+  addCar(title: string, description: string, img: string, price: number) {
+    const car: Car = { id: null, title: title, description: description, img: img, price: price }
     this.http.post<{ message: string, carId: string }>("http://localhost:3000/api/cars", car)
       .subscribe(responseData => {
         const id = responseData.carId;
