@@ -1,14 +1,25 @@
+:host {
+    margin-top: 2rem;
+  }
+nav {
+    background-color:black;
+    display:flex;
+    justify-content:space-around;
+    height:100px;
+    align-items:center;
+}
 a{
     text-decoration: none;
     color:white
 }
-
+a:active, a:hover{
+    color:orange
+}
 ul {
     list-style:none;
-    padding:0;
-    margin:0;
 }
-
-.nav-links {
-    flex:1 1 auto;
+.header {
+    color:#92643e;
+    font-size: 30px;
+    margin-top:1rem;
 }
