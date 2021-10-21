@@ -1,16 +1,22 @@
-<select (change)="sort($event)">
-  <option value="" selected disabled hidden>Sort By</option>
-  <option value="Relevance">Relevance</option>
-  <option value="Low">Price Low to High </option>
-  <option value="High">Price High to Low </option>
-</select>
+<mat-form-field appearance="fill">
+  <mat-label color="black">Sort By</mat-label>
+  <select matNativeControl required (change)="sort($event)">
+    <option value="Relevance">Relevance</option>
+    <option value="Low">Price Low to High </option>
+    <option value="High">Price High to Low </option>
+  </select>
+</mat-form-field>
 <div class="card-list">
   <ul multi="true">
     <li *ngFor="let car of cars">
       <a [routerLink]="['/car',car.id]">
         <mat-card>
+          <img mat-card-image src="{{ car.img }}" />
           <mat-card-title>
-            {{ car.title }}
+            <h1>{{ car.title }}</h1>
+            <mat-card-subtitle>
+              <h1>${{ car.price }}/day</h1>
+            </mat-card-subtitle>
           </mat-card-title>
         </mat-card>
       </a>

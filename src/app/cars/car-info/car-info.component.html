@@ -1,16 +1,15 @@
 <mat-card *ngIf="car">
+    <img mat-card-image src="{{ car.img }}" />
     <mat-card-title>
         {{ car.title }}
     </mat-card-title>
     <mat-card-subtitle>
         {{ car.description }}
-
     </mat-card-subtitle>
     <mat-card-subtitle>
-        {{ car.price }}
-
+        <h1>${{ car.price }}/day</h1>
     </mat-card-subtitle>
-    <img mat-card-image src="{{ car.img }}" />
+
     <mat-card-actions>
         <a mat-button color="primary" [routerLink]="['/edit', car.id]">Edit</a>
         <button mat-button color="warn" (click)="onDelete(car.id)">Delete</button>
