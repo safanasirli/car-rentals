@@ -14,7 +14,7 @@ export class CarsService {
 
   getCars() {
     this.http.get<{ message: string; cars: any }>(
-      "https://safanasirli-car-rentals.herokuapp.com/api/cars"
+      "http://localhost:3000/api/cars"
     )
       .pipe(map((carData) => {
         return carData.cars.map(car => {
@@ -38,26 +38,25 @@ export class CarsService {
   }
 
   getCar(id: string) {
-    return this.http.get<{ _id: string, title: string, description: string, img: string, price: number }>("https://safanasirli-car-rentals.herokuapp.com/api/cars/" + id)
+    return this.http.get<{ _id: string, title: string, description: string, img: string, price: number }>("http://localhost:3000/api/cars/" + id)
   }
 
 
   updateCar(id: string, title: string, description: string, img: string, price: number) {
     const car: Car = { id: id, title: title, description: description, img: img, price: price }
-    this.http.put("https://safanasirli-car-rentals.herokuapp.com/api/cars/" + id, car)
+    this.http.put("http://localhost:3000/api/cars/" + id, car)
       .subscribe(res => {
         const updatedCars = [...this.cars]
         const oldCarIndex = updatedCars.findIndex(newCar => newCar.id === car.id);
         updatedCars[oldCarIndex] = car;
         this.cars = updatedCars;
         this.carsUpdated.next([...this.cars]);
-        this.router.navigate(["/"])
       })
   }
 
   addCar(title: string, description: string, img: string, price: number) {
     const car: Car = { id: null, title: title, description: description, img: img, price: price }
-    this.http.post<{ message: string, carId: string }>("https://safanasirli-car-rentals.herokuapp.com/api/cars", car)
+    this.http.post<{ message: string, carId: string }>("http://localhost:3000/api/cars", car)
       .subscribe(responseData => {
         const id = responseData.carId;
         car.id = id;
@@ -68,7 +67,7 @@ export class CarsService {
   }
 
   deleteCar(carId: string) {
-    this.http.delete("https://safanasirli-car-rentals.herokuapp.com/api/cars/" + carId)
+    this.http.delete("http://localhost:3000/api/cars/" + carId)
       .subscribe(() => {
         const updatedCars = this.cars.filter(car => car.id !== carId);
         this.cars = updatedCars;

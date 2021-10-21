@@ -1,4 +1,5 @@
 const app = require("./backend/app");
+const express = require('express');
 const debug = require("debug")("node-angular");
 const http = require("http");
 
@@ -36,7 +37,11 @@ const onError = error => {
             throw error;
     }
 };
+app.use(express.static('./dist/car-rentals-frontend'));
 
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/car-rentals-frontend/'}),
+);
 const onListening = () => {
     const addr = server.address();
     const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
@@ -45,10 +50,7 @@ const onListening = () => {
 
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
-app.use(express.static(__dirname + '/build'));
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/build/index.html')); // Set index.html as layout
-});
+
 const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);

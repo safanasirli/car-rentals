@@ -8,7 +8,7 @@ const cors = require('cors')
 app.use(cors())
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://safa:Wj1S0Prpt6kXsALV@cluster0.15g5i.mongodb.net/car-rentals?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://safa:"+ process.env.MONGO_PASSWORD+"@cluster0.15g5i.mongodb.net/car-rentals?retryWrites=true&w=majority")
   .then(() => {
     console.log('Connected to database!')
   })
