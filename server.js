@@ -45,13 +45,10 @@ const onListening = () => {
 
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
-const module = require('path');
-
-  app.use(express.static('public'));
-  app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'public/index.html'));
-})
-
+app.use(express.static(__dirname + '/build'));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/build/index.html')); // Set index.html as layout
+});
 const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);
