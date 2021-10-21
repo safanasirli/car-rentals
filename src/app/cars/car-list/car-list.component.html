@@ -12,12 +12,14 @@
       <a [routerLink]="['/car',car.id]">
         <mat-card>
           <img mat-card-image src="{{ car.img }}" />
-          <mat-card-title>
-            <h1>{{ car.title }}</h1>
+          <div class="info">
+            <mat-card-title>
+              <h1>{{ car.title }}</h1>
+            </mat-card-title>
             <mat-card-subtitle>
-              <h1>${{ car.price }}/day</h1>
+              <h1 class="price">${{ car.price }}/day</h1>
             </mat-card-subtitle>
-          </mat-card-title>
+          </div>
         </mat-card>
       </a>
     </li>

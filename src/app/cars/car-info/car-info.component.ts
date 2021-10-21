@@ -13,16 +13,17 @@ import { Subscription } from 'rxjs';
 export class CarInfoComponent implements OnInit, OnDestroy {
     car: Car
     cars: Car[] = []
+    isLoading = false
     private carsSub: Subscription
     constructor(public carsService: CarsService, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-
         const id = this.route.snapshot.paramMap.get('carId');
-
+        this.isLoading = true
         this.carsService.getCar(id)
             .subscribe((carData) => {
+                this.isLoading = false
                 this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img, price: carData.price }
             })
         this.carsService.getCars()
@@ -43,7 +44,5 @@ export class CarInfoComponent implements OnInit, OnDestroy {
 
     Reserve(): void {
         this.reserve = !this.reserve;
-       
-        // Do some other stuff needed
     }
 }

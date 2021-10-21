@@ -3,13 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Car } from "./cars.model";
+import { Router } from "@angular/router";
 
 @Injectable({ providedIn: "root" })
 export class CarsService {
   private cars: Car[] = [];
   private carsUpdated = new Subject<Car[]>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getCars() {
     this.http.get<{ message: string; cars: any }>(
@@ -50,6 +51,7 @@ export class CarsService {
         updatedCars[oldCarIndex] = car;
         this.cars = updatedCars;
         this.carsUpdated.next([...this.cars]);
+        this.router.navigate(["/"])
       })
   }
 
@@ -61,6 +63,7 @@ export class CarsService {
         car.id = id;
         this.cars.push(car);
         this.carsUpdated.next([...this.cars]);
+        this.router.navigate(["/"])
       });
   }
 
@@ -70,6 +73,7 @@ export class CarsService {
         const updatedCars = this.cars.filter(car => car.id !== carId);
         this.cars = updatedCars;
         this.carsUpdated.next([...this.cars])
+        this.router.navigate(["/"])
       })
   }
 }

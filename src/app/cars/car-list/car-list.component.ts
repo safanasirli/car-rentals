@@ -9,16 +9,18 @@ import { CarsService } from '../cars.service'
 })
 
 export class CarListComponent implements OnInit, OnDestroy {
-
+isLoading = false;
   cars: Car[] = [];
   private carsSub: Subscription;
   constructor(public carsService: CarsService) {
   }
   ngOnInit() {
+    this.isLoading = true
     this.cars = this.cars.sort((low, high) => low.price - high.price);
     this.carsService.getCars()
     this.carsSub = this.carsService.getCarUpdateListener()
       .subscribe((cars: Car[]) => {
+        this.isLoading=false
         this.cars = cars
 
       })

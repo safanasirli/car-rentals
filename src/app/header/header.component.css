@@ -1,25 +1,26 @@
 :host {
-    margin-top: 2rem;
-  }
+  margin-top: 2rem;
+}
 nav {
-    background-color:black;
-    display:flex;
-    justify-content:space-around;
-    height:100px;
-    align-items:center;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  height: 100px;
+  align-items: center;
 }
-a{
-    text-decoration: none;
-    color:white
+a {
+  text-decoration: none;
+  color: white;
 }
-a:active, a:hover{
-    color:orange
+a:active,
+a:hover {
+  color: orange;
 }
 ul {
-    list-style:none;
+  list-style: none;
 }
 .header {
-    color:#92643e;
-    font-size: 30px;
-    margin-top:1rem;
+  color: #92643e;
+  font-size: 30px;
+  margin-top: 1rem;
 }
