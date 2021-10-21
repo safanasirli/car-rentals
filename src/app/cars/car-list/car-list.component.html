@@ -1,14 +1,13 @@
-<!-- if we want all the accordions open multi=true -->
-<mat-accordion multi="true">
-  <mat-expansion-panel *ngFor="let car of cars">
-    <mat-expansion-panel-header>
-      {{ car.title }}
-    </mat-expansion-panel-header>
-    <p>{{ car.description }}</p>
-    <img src="{{ car.img }}" />
-    <mat-action-row>
-      <a mat-button color="primary" [routerLink]="['/edit', car.id]">Edit</a>
-      <button mat-button color="warn" (click)="onDelete(car.id)">Delete</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
+<div class="card-list">
+  <ul multi="true">
+    <li *ngFor="let car of cars">
+      <a [routerLink]="['/car',car.id]">
+        <mat-card>
+          <mat-card-title>
+            {{ car.title }}
+          </mat-card-title>
+        </mat-card>
+      </a>
+    </li>
+  </ul>
+</div>

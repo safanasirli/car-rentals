@@ -26,8 +26,8 @@ export class CarCreateComponent implements OnInit {
       if (paramMap.has('carId')) {
         this.mode = 'edit';
         this.carId = paramMap.get('carId');
-        this.carsService.getCar(this.carId).subscribe(carData=>{
-          this.car={id:carData._id, title:carData.title, description:carData.description, img:carData.img}
+        this.carsService.getCar(this.carId).subscribe(carData => {
+          this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img }
         })
       } else {
         this.mode = 'add';
