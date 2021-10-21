@@ -33,6 +33,11 @@ ul {
   flex-direction: row;
   justify-content: space-between;
 }
+
+mat-card-subtitle{
+  display:flex;
+  flex-direction:column
+}
 @media only screen and (max-width: 600px) {
   .info {
     display: flex;

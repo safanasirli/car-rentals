@@ -4,10 +4,11 @@
         <mat-card-title>
             {{ car.title }}
         </mat-card-title>
-        <h1>${{ car.price }}/day</h1>
+        <h1 class="price">${{ car.price }}/day</h1>
     </div>
-    <mat-card-subtitle>
-        {{ car.description }}
+    <mat-card-subtitle class="description">
+        <h3><strong>Description:</strong></h3>
+        <p>{{ car.description }}</p>
     </mat-card-subtitle>
     <mat-card-subtitle>
         <button class="reserve-button" mat-raised-button (click)="Reserve()">{{reserve ? 'Undo':'Reserve'}}</button>
