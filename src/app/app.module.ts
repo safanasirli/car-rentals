@@ -22,7 +22,7 @@ import { CarInfoComponent } from './cars/car-info/car-info.component';
     HeaderComponent,
     CarCreateComponent,
     CarListComponent,
-    CarInfoComponent
+    CarInfoComponent,
   ],
   imports: [
     BrowserModule,
