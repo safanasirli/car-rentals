@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Car } from "./cars.model";
 import { Router } from "@angular/router";
-
+ 
 @Injectable({ providedIn: "root" })
 export class CarsService {
   private cars: Car[] = [];
@@ -13,6 +13,7 @@ export class CarsService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getCars() {
+
     this.http.get<{ message: string; cars: any }>(
       "https://safanasirli-car-rentals.herokuapp.com/api/cars"
     )
@@ -56,7 +57,9 @@ export class CarsService {
 
   addCar(title: string, description: string, img: string, price: number) {
     const car: Car = { id: null, title: title, description: description, img: img, price: price }
-    this.http.post<{ message: string, carId: string }>("https://safanasirli-car-rentals.herokuapp.com/api/cars", car)
+    console.log(car)
+    const headers = new HttpHeaders({ headers: null });
+    this.http.post<{ message: string, carId: string }>("https://safanasirli-car-rentals.herokuapp.com/api/cars",car )
       .subscribe(responseData => {
         const id = responseData.carId;
         car.id = id;
