@@ -6,7 +6,7 @@
     <option value="High">Price High to Low </option>
   </select>
 </mat-form-field>
-<div class="card-list">
+<mat-grid-list cols="2" rowHeight="2:2">
   <ul multi="true">
     <li *ngFor="let car of cars">
       <a [routerLink]="['/car',car.id]">
@@ -22,4 +22,3 @@
       </a>
     </li>
   </ul>
-</div>
