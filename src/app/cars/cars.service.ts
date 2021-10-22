@@ -4,7 +4,7 @@ import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Car } from "./cars.model";
 import { Router } from "@angular/router";
- 
+
 @Injectable({ providedIn: "root" })
 export class CarsService {
   private cars: Car[] = [];
@@ -13,10 +13,9 @@ export class CarsService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getCars() {
-
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     this.http.get<{ message: string; cars: any }>(
-      "https://safanasirli-car-rentals.herokuapp.com/api/cars"
-    )
+      "https://safanasirli-car-rentals.herokuapp.com/api/cars")
       .pipe(map((carData) => {
         return carData.cars.map(car => {
           return {
@@ -39,12 +38,14 @@ export class CarsService {
   }
 
   getCar(id: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.get<{ _id: string, title: string, description: string, img: string, price: number }>("https://safanasirli-car-rentals.herokuapp.com/api/cars/" + id)
   }
 
 
   updateCar(id: string, title: string, description: string, img: string, price: number) {
     const car: Car = { id: id, title: title, description: description, img: img, price: price }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     this.http.put("https://safanasirli-car-rentals.herokuapp.com/api/cars/" + id, car)
       .subscribe(res => {
         const updatedCars = [...this.cars]
@@ -58,8 +59,8 @@ export class CarsService {
   addCar(title: string, description: string, img: string, price: number) {
     const car: Car = { id: null, title: title, description: description, img: img, price: price }
     console.log(car)
-    const headers = new HttpHeaders({ headers: null });
-    this.http.post<{ message: string, carId: string }>("https://safanasirli-car-rentals.herokuapp.com/api/cars",car )
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    this.http.post<{ message: string, carId: string }>("https://safanasirli-car-rentals.herokuapp.com/api/cars", car)
       .subscribe(responseData => {
         const id = responseData.carId;
         car.id = id;
@@ -70,6 +71,7 @@ export class CarsService {
   }
 
   deleteCar(carId: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     this.http.delete("https://safanasirli-car-rentals.herokuapp.com/api/cars/" + carId)
       .subscribe(() => {
         const updatedCars = this.cars.filter(car => car.id !== carId);
