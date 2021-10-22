@@ -14,7 +14,7 @@ router.post("", (req, res, next) => {
     car.save().then(result => {
         res.status(201).json({
             message: 'Car added successfully',
-            carId: createdCar._id
+            carId: result._id
         });
     });
 

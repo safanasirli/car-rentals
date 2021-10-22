@@ -1,29 +1,52 @@
 const app = require("./backend/app");
-const express = require('express');
+const debug = require("debug")("node-angular");
 const http = require("http");
-const cors = require('cors')
 
-const whitelist = ['http://localhost:4200', 'https://safanasirli-car-rentals.herokuapp.com/']
+const normalizePort = val => {
+    var port = parseInt(val, 10);
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
+    if (isNaN(port)) {
+        // named pipe
+        return val;
     }
-}
 
-app.use(cors(corsOptions))
-app.use(express.static('./dist/car-rentals-frontend'));
+    if (port >= 0) {
+        // port number
+        return port;
+    }
 
-app.get('/*', (req, res) =>
-    res.sendFile('index.html', { root: 'dist/car-rentals-frontend' }),
-);
+    return false;
+};
 
-const port = (process.env.PORT || "3000");
+const onError = error => {
+    if (error.syscall !== "listen") {
+        throw error;
+    }
+    const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+    switch (error.code) {
+        case "EACCES":
+            console.error(bind + " requires elevated privileges");
+            process.exit(1);
+            break;
+        case "EADDRINUSE":
+            console.error(bind + " is already in use");
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+};
+
+const onListening = () => {
+    const addr = server.address();
+    const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+    debug("Listening on " + bind);
+};
+
+const port = normalizePort(process.env.PORT || "8080");
 app.set("port", port);
 
 const server = http.createServer(app);
+server.on("error", onError);
+server.on("listening", onListening);
 server.listen(port);

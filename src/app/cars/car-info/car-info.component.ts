@@ -22,7 +22,7 @@ export class CarInfoComponent implements OnInit, OnDestroy {
         const id = this.route.snapshot.paramMap.get('carId');
         this.isLoading = true
         this.carsService.getCar(id)
-            .subscribe((carData) => {
+            .subscribe(carData => {
                 this.isLoading = false
                 this.car = { id: carData._id, title: carData.title, description: carData.description, img: carData.img, price: carData.price }
             })
