@@ -1,7 +1,10 @@
-const app = require("./backend/app");
+const app = require("./app");
+const express = require('express');
 const debug = require("debug")("node-angular");
 const http = require("http");
-
+const cors = require('cors');
+app.use(cors())
+const path = require('path');
 const normalizePort = val => {
     var port = parseInt(val, 10);
 
@@ -42,8 +45,11 @@ const onListening = () => {
     const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
     debug("Listening on " + bind);
 };
-
-const port = normalizePort(process.env.PORT || "8080");
+app.use(express.static(path.join(__dirname, 'dist/car-rentals-frontend/')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/car-rentals-frontend/index.html'));
+  });
+const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 const server = http.createServer(app);

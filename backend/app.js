@@ -5,18 +5,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const cors = require('cors')
-const whitelist = ['http://localhost:4200' || "https://safanasirli-car-rentals.herokuapp.com/"]
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
-app.use(cors(corsOptions))
+app.use(cors())
 const mongoose = require("mongoose");
 mongoose.connect("mongodb+srv://safa:" + process.env.MONGO_PASSWORD + "@cluster0.15g5i.mongodb.net/car-rentals?retryWrites=true&w=majority")
   .then(() => {

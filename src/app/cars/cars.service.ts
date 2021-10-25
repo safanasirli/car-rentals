@@ -15,7 +15,7 @@ export class CarsService {
 
   getCars() {
     this.http.get<{ message: string; cars: any }>(
-      "api/cars"
+      "http://carrentals-env.eba-mp3nd5ku.us-east-2.elasticbeanstalk.com/api/cars"
     )
       .pipe(map((carData) => {
         return carData.cars.map(car => {
@@ -39,13 +39,13 @@ export class CarsService {
   }
 
   getCar(id: string) {
-    return this.http.get<{ _id: string, title: string, description: string, img: string, price: number }>("api/cars/" + id)
+    return this.http.get<{ _id: string, title: string, description: string, img: string, price: number }>("http://carrentals-env.eba-mp3nd5ku.us-east-2.elasticbeanstalk.com/api/cars/" + id)
   }
 
 
   updateCar(id: string, title: string, description: string, img: string, price: number) {
     const car: Car = { id: id, title: title, description: description, img: img, price: price }
-    this.http.put("api/cars/" + id, car)
+    this.http.put("http://carrentals-env.eba-mp3nd5ku.us-east-2.elasticbeanstalk.com/api/cars/" + id, car)
       .subscribe(res => {
         const updatedCars = [...this.cars]
         const oldCarIndex = updatedCars.findIndex(newCar => newCar.id === car.id);
@@ -58,7 +58,7 @@ export class CarsService {
 
   addCar(title: string, description: string, img: string, price: number) {
     const car: Car = { id: null, title: title, description: description, img: img, price: price }
-    this.http.post<{ message: string, carId: string }>("api/cars", car)
+    this.http.post<{ message: string, carId: string }>("http://carrentals-env.eba-mp3nd5ku.us-east-2.elasticbeanstalk.com/api/cars", car)
       .subscribe(responseData => {
         const id = responseData.carId;
         car.id = id;
@@ -69,7 +69,7 @@ export class CarsService {
   }
 
   deleteCar(carId: string) {
-    this.http.delete("api/cars/" + carId)
+    this.http.delete("http://carrentals-env.eba-mp3nd5ku.us-east-2.elasticbeanstalk.com/api/cars/" + carId)
       .subscribe(() => {
         const updatedCars = this.cars.filter(car => car.id !== carId);
         this.cars = updatedCars;
